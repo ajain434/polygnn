@@ -68,6 +68,20 @@ def construct_polymer_graph_monocycle(
         edge_features.extend(
             [bond_feature, bond_feature]
         )  # both bonds have the same features
+    
+    # node_features_tensor = torch.tensor(node_features, dtype=torch.float)
+    # edge_indices_tensor = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+    # edge_features_tensor = torch.tensor(edge_features, dtype=torch.float)
+
+    # torch._dynamo.mark_dynamic(node_features_tensor, index = 0)  # Number of nodes
+    # torch._dynamo.mark_dynamic(edge_indices_tensor, index = 1)  # Number of edges
+    # torch._dynamo.mark_dynamic(edge_features_tensor, index = 2)  # Number of edges (edge features)
+
+    # data = Data(
+    #     x=node_features_tensor,
+    #     edge_index=edge_indices_tensor,
+    #     edge_weight=edge_features_tensor,
+    # )
 
     data = Data(
         x=torch.tensor(node_features, dtype=torch.float),
@@ -777,6 +791,21 @@ def construct_polymer_graph_trimer(
     # ############################
     # Now we make the Data object
     # ############################
+
+    # node_features_tensor = torch.tensor(node_features, dtype=torch.float)
+    # edge_indices_tensor = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+    # edge_features_tensor = torch.tensor(edge_features, dtype=torch.float)
+
+    # torch._dynamo.mark_dynamic(node_features_tensor, index = 0)  # Number of nodes
+    # torch._dynamo.mark_dynamic(edge_indices_tensor, index = 1)  # Number of edges
+    # torch._dynamo.mark_dynamic(edge_features_tensor, index = 2)  # Number of edges (edge features)
+    # data = Data(
+    #     x=node_features_tensor,
+    #     edge_index=edge_indices_tensor,  # as shown in https://pytorch-geometric.readthedocs.io/en/latest/notes/introduction.html
+    #     edge_weight=edge_features_tensor,
+    # )
+
+
     data = Data(
         x=torch.tensor(node_features, dtype=torch.float),
         edge_index=torch.tensor(edge_indices, dtype=torch.long)
